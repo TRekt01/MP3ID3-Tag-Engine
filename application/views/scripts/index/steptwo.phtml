@@ -1,0 +1,208 @@
+<?php
+$this->headlink()->appendStylesheet("http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css");
+$this->headscript()->appendFile("http://code.jquery.com/jquery-1.9.1.js", "text/javascript");
+$this->headscript()->appendFile("http://code.jquery.com/ui/1.10.2/jquery-ui.js", "text/javascript");
+?>
+
+<style type='text/css'>
+    .ui-widget-header {
+        background-color: #EEEEEE !important; //Any colour can go here
+    }
+</style>
+
+<script type="text/javascript">
+//<![CDATA[
+
+//global result save
+var crawlResults = new Array();
+
+//Processing data from xhttp id3 search (building id3 data table and stuff...)
+function handleSearchValue(data, elementId, trackname){
+
+         //Empty Result div and delete class informations (progressbar stuff) first
+         $("#resultdiv"+elementId).empty();
+         //$("#resultdiv"+elementId).removeClass();
+
+         if(data == false){
+                 Trackname       = JSON.parse(trackname);
+
+                 alert("Sorry, no results for "+Trackname["Trackname"]+" found");
+         }else{
+                 var table;
+                 //build id3data table showing first result!
+                 $.each(data, function(index, value){
+                         table = buildId3DataTable(value, elementId);
+                         return false;
+                 })
+
+                 //build selector
+                 var selector = "<select id='selector"+elementId+"' class='selector' style='margin-top: 20px;'>";
+                 $.each(data, function(index, value){
+                         //store crawl result in global
+                         crawlResults[index] = value;
+
+                         //fill selector with options (value = resultId)
+                         selector += "<option value='"+index+"'>"+value["artist"]+" - "+value["title"]+"</option>";
+
+                 })
+                 selector += "</select>";
+
+                 //build write button
+                 var writeButton = "<input type='button' class='write' id='write"+elementId+"' value='Write' style='margin-bottom: 20px;'>";
+
+                 $("#resultdiv"+elementId).append(selector+table+writeButton);
+         }
+}
+
+//function builds the table displaying found id3 data
+function buildId3DataTable(data, elementId){
+         var tableHTML   = "<div id='id3data"+elementId+"' class='id3DataTable'>";
+         tableHTML  += "<table class='data_Table'>";
+         tableHTML  += "<tr><td rowspan='3' width='100'><img src='"+data["coverurl"]+"' width='100' height='100'/></td><td><b>Title:</b></td><td>"+data["title"]+"</td><td><b>Release:</b></td><td>"+data["release"]+"</td><td><b>Genre:</b></td><td>"+data["genre"]+"</td></tr>";
+         tableHTML  += "<tr><td><b>Artist:</b></td><td>"+data["artist"]+"</td><td><b>Label:</b></td><td>"+data["label"]+"</td><td><b>Bpm:</b></td><td>"+data["bpm"]+"</td></tr>";
+         tableHTML  += "<tr><td><b>Remixer:</b></td><td>"+data["remixer"]+"</td><td><b>Release date:</b></td><td>"+data["releasedate"]+"</td><td><b>Key:</b></td><td>"+data["key"]+"</td></tr>";
+         tableHTML  += "</table>";
+         tableHTML  += "</div>";
+
+         return tableHTML;
+}
+
+//Processing data from xhttp id3 write (show icon and stuff)
+function handleWriteValue(data, Id){
+         if(data == false){
+                 alert("Sorry, something went wrong during the ID3-Write. This error often occures, if the ID3-Tags of the MP3-files are corrupted (e. g. if they contain chinese or cyrillian letters in the tags or if the tags are damaged otherwise). This can happen if the file comes from illegal sources - check your sources and get a new file !");
+
+                 //das resultdiv leeren
+                 $("#resultdiv"+Id).empty();
+
+                 //das td leeren
+                 $("#td"+Id).empty();
+
+                 //check the row
+                 $("#td"+Id).prepend("<img src='<?php echo URL;?>/images/error.png' height='20' width='20' style='margin-right: 1em;'/>");
+
+                 //disable input field
+                 $("#input"+Id).prop('disabled', false);
+         }else{
+                 //das resultdiv leeren
+                 $("#resultdiv"+Id).empty();
+
+                 //das td leeren
+                 $("#td"+Id).empty();
+
+                 //check the row
+                 $("#td"+Id).prepend("<img src='<?php echo URL;?>/images/check.png' height='20' width='20' style='margin-right: 1em;'/>");
+
+                 //disable input field
+                 $("#input"+Id).prop('disabled', true);
+         }
+
+
+}
+
+
+$(document).ready(function() {
+
+         //TOOLTIPS
+         $(function() {
+                 $( document ).tooltip({track: true});
+         });
+
+         //Search function xmlhttp
+         $(".search").click(function() {
+                 var Id   = this.id;
+                 var Trackname = JSON.stringify( {Trackname:$("#input"+Id).val(), Filename:$("#input"+Id).attr('name')} );
+
+                 //Empty Result div first
+                 $("#resultdiv"+Id).empty();
+
+                 //show progressbar
+                 $("#resultdiv"+Id).append("<div id='progressbar"+Id+"'></div>");
+                 $( "#progressbar"+Id ).progressbar({
+                  value: false
+                  });
+
+                 //now trigger a xml http-request for search
+                 $.ajaxSetup({contentType: "application/json; charset=utf-8"});
+                 $.post("/index/ajaxid3crawl/format/json", Trackname,
+                              function(data) {
+                                 handleSearchValue(data, Id, Trackname);
+                              }
+                 , "json");
+         });
+
+         //write function xmlhttp
+         $( document ).on( 'click', '.write', function () {
+                 var elementId   = this.id;
+                 var Id          = elementId.substring(5);
+                 var resultId    = $("#selector"+Id).val();
+
+                 var Data        = JSON.stringify( {ResultId:resultId, Filename:$("#input"+Id).attr('name')} );
+
+                 //now triffer a xml http-request for write data
+                 $.ajaxSetup({contentType: "application/json; charset=utf-8"});
+                 $.post("/index/ajaxid3write/format/json", Data,
+                         function(data) {
+                                 handleWriteValue(data, Id);
+                         }
+                 , "json");
+         });
+
+
+
+         //change search result (selector change) function
+         $( document ).on( 'change', '.selector', function () {
+                 //result aus global holen
+                 var elementId     = this.id;
+                 var resultId      = $("#"+elementId).val();
+                 var result        = crawlResults[resultId];
+
+                 var Id  = elementId.substring(8);
+
+                 //build table
+                 var table = buildId3DataTable(result, Id);
+
+                 //build write button
+                 var writeButton = "<input type='button' class='write' id='write"+Id+"' value='Write' style='margin-bottom: 20px;'>";
+
+                 //remove old table & write button
+                 $("#id3data"+Id).remove();
+                 $("#write"+Id).remove();
+
+                 //show new table & button
+                 $("#resultdiv"+Id).append(table+writeButton);
+         });
+
+
+
+});
+
+//]]>
+</script>
+
+<?php
+$this->placeholder('HeadTitle')->append('MP3-Writer');
+$this->headTitle()->append('Crawl ID3-Tags!');
+$this->placeholder('SubTitle')->append('Crawl ID3-Tags and wirte them to your files!');
+?>
+<?php $this->placeholder('HintsSidebar')->append('Not the result you expected? Change the search string and try it again! Your filename won\'t be touched!'); ?>
+<?php $this->placeholder('HintsSidebar')->append('You will get multiple crawl results. Select the correct one and press <b>write</b> '); ?>
+<?php $this->placeholder('HintsSidebar')->append('If the ID3-Data was written correctly, the file will be marked with an <img style="widht: 12px; height: 12px;" src='.URL.'/images/check.png title=succeed />'); ?>
+<?php $this->placeholder('HintsSidebar')->append('If an error occured during the ID3-write-procedd, the file will be marked with an <img style="widht: 12px; height: 12px;" src='.URL.'/images/Error.png title=failure />'); ?>
+
+
+<div id="dialog" title="Smartmeter CMS" style="display:none;">
+Die Website wurde optimiert für:
+         <ul>
+         <li>Internetexplorer 8 oder höher</li>
+         <li>Firefox 3</li>
+         </ul>
+Mit älteren Browserversionen oder anderen Webbrowsern kann es zu Anzeigefehlern kommen.<br /><br />
+Aktualisieren Sie ggf. Ihren Webbrowser.
+</div>
+
+<h1>2. Search and write ID3-Tags</h1>
+
+<?php
+         echo $this->tagSearchWriteForm;
+?>

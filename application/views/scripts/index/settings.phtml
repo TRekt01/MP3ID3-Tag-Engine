@@ -1,0 +1,50 @@
+<?php
+$this->headlink()->appendStylesheet("http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css");
+$this->headscript()->appendFile("http://code.jquery.com/jquery-1.9.1.js", "text/javascript");
+$this->headscript()->appendFile("http://code.jquery.com/ui/1.10.2/jquery-ui.js", "text/javascript");
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+
+$(document).ready(function() {
+
+         //TOOLTIPS
+         $(function() {
+                 $( document ).tooltip({track: true});
+         });
+
+});
+
+//]]>
+</script>
+
+<?php
+$this->placeholder('HeadTitle')->append('MP3-Writer');
+$this->headTitle()->append('Settings');
+$this->placeholder('SubTitle')->append('Settings');
+?>
+<?php $this->placeholder('HintsSidebar')->append('For best results, rename the files according to the following schematic:<br /><b>Artist - Trackname (Mix Version)</b>'); ?>
+<?php $this->placeholder('HintsSidebar')->append('Use settings to select your MP3 directory!'); ?>
+<?php $this->placeholder('HintsSidebar')->append('Incorrect filename >> wrong results!'); ?>
+
+
+<div id="dialog" title="Smartmeter CMS" style="display:none;">
+Die Website wurde optimiert für:
+         <ul>
+         <li>Internetexplorer 8 oder höher</li>
+         <li>Firefox 3</li>
+         </ul>
+Mit älteren Browserversionen oder anderen Webbrowsern kann es zu Anzeigefehlern kommen.<br /><br />
+Aktualisieren Sie ggf. Ihren Webbrowser.
+</div>
+
+<h1>Choose the MP3-Direcotry:</h1>
+<?php
+         echo $this->directoryChooseForm;
+?>
+
+<h1>Select Crawler-Engine:</h1>
+<?php
+         echo $this->crawlerSelectForm;
+?>

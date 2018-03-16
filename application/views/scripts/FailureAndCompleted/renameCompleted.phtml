@@ -1,0 +1,12 @@
+<script type="text/javascript">
+         $(document).ready(function() {
+                 setTimeout(function() {
+                         window.location.href = "<?php echo URL . $this->url(array('controller' => 'index', 'action' => 'steptwo')) ?>";
+                 }, 15000)
+         });
+</script>
+
+<div class="resultdiv">
+                 <h2>Files successfully renamed!</h2><br />
+         <h3><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'steptwo')) ?>">>>Proceed with step 2<<</a></h3>
+</div>

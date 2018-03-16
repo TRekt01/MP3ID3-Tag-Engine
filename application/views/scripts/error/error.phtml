@@ -1,0 +1,32 @@
+<?php
+$this->headlink()->appendStylesheet("http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css");
+$this->headscript()->appendFile("http://code.jquery.com/jquery-1.9.1.js", "text/javascript");
+$this->headscript()->appendFile("http://code.jquery.com/ui/1.10.2/jquery-ui.js", "text/javascript");
+$this->headscript()->appendFile("/javascript/jQueryStuff.js", "text/javascript");
+?>
+
+<?php
+$this->headTitle()->append('Error');
+?>
+
+<div id="dialog" title="Errors - weiterführende Informationen" style="display:none;">
+<?php echo $this->dialogText; ?>
+</div>
+
+<div class="resultdiv">
+         <div class="errordiv" style="color: black;">
+                 <?php
+                         echo $this->topErrorText;
+                 ?>
+
+                 <div style="text-align: center;" >
+                         <?php
+                                 echo $this->errorPicture;
+                         ?>
+                 </div>
+
+                 <?php
+                         echo $this->bottomErrorText;
+                 ?>
+         </div>
+</div>

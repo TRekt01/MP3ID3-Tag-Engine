@@ -1,0 +1,49 @@
+<?php echo $this->doctype('XHTML1_STRICT') ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+         <head>
+                 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+                 <meta http-equiv="X-UA-Compatible" content="IE=8" />  <!-- "Thanks" to Microsoft oO !-->
+                 <?php echo $this->headTitle(); ?>
+                 <?php echo $this->headScript(); ?>
+                 <?php echo $this->headLink(); ?>
+                 <?php echo $this->jQuery(); ?>
+         </head>
+<body>
+         <div id="wrapper">
+                 <div id="header">
+
+                 </div>
+                 <div id="content">
+                         <div id="logo">
+                         <?php echo $this->partial('header.phtml'); ?>
+                         </div>
+                         <div id="r_column" >
+                                 <h2 class="first">Links</h2><div>
+                                 <?php echo $this->placeholder('LinksSidebar'); ?></div>
+
+
+                                 <h2 class="following">Tips</h2><div>
+                                 <?php echo $this->placeholder('HintsSidebar'); ?></div>
+
+                         </div>
+
+                         <div id="main">
+                               <div id="toplinks"><?php echo $this->placeholder('Toplinks'); ?></div>
+                               <div class="post">
+                                 <h1 class="title"><?php echo $this->placeholder('HeadTitle'); ?></h1>
+                                 <p class="untertitel"><?php echo $this->placeholder('SubTitle'); ?></p>
+                                 <div class="entry">
+                                         <?php echo $this->layout()->content ?>
+                                         <?php $this->partial() ?>
+                                 </div>
+                               <div>
+                                         <p class="helplink"><a class="comments" id="opener">Weiterführende Informationen</a></p>
+                               </div>
+                         <div>
+                 </div>
+                 <div id="footer">
+                         <?php echo $this->partial('footer.phtml'); ?>
+                 </div>
+         </div>
+</body>
+</html>

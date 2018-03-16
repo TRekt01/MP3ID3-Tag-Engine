@@ -1,0 +1,37 @@
+<?php
+$this->headlink()->appendStylesheet("http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css");
+$this->headscript()->appendFile("http://code.jquery.com/jquery-1.9.1.js", "text/javascript");
+$this->headscript()->appendFile("http://code.jquery.com/ui/1.10.2/jquery-ui.js", "text/javascript");
+$this->headscript()->appendFile("/javascript/jQueryStuff.js", "text/javascript");
+?>
+
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+         //TOOLTIPS
+         $(function() {
+                 $( document ).tooltip({track: true});
+         });
+
+});
+//]]>
+</script>
+
+<?php
+$this->placeholder('HeadTitle')->append('MP3-Writer');
+$this->headTitle()->append('Step 1: Rename');
+$this->placeholder('SubTitle')->append('Rename your tracks or proceed with step 2');
+?>
+<?php $this->placeholder('HintsSidebar')->append('For best search results, rename the files according to the following schematic:<br /><b>Artist - Trackname (Mix Version)</b>'); ?>
+<?php $this->placeholder('HintsSidebar')->append('This step is optional! No rename needed ? Proceed with <a href='.$this->url(array('controller' => 'index', 'action' => 'steptwo')).'>step 2</a>'); ?>
+<?php $this->placeholder('HintsSidebar')->append('Make sure that the application has write-accesss for the files!'); ?>
+<?php $this->placeholder('HintsSidebar')->append('Use settings to select your MP3 directory!'); ?>
+
+
+<h1>1. Rename Tracks</h1>
+<p>
+         Found files: <b><?php echo $this->allFiles; ?></b>
+         Found mp3 files: <b><?php echo $this->mp3Files; ?></b>
+</p>
+<?php echo $this->renameForm; ?>

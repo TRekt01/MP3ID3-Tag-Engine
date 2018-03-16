@@ -1,0 +1,8 @@
+<?php
+$this->placeholder('Link1')->append('settings');
+
+?>
+
+<?php $this->placeholder('LinksSidebar')->captureStart() ?>
+<li><a href="<?php echo $this->url(array('action' => $this->placeholder('Link1')), NULL, TRUE) ?>">Settings</a></li>
+<?php $this->placeholder('LinksSidebar')->captureEnd() ?>

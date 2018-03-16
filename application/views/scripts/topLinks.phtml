@@ -1,0 +1,11 @@
+<?php
+         $datenaustausch         = "<a href=".$this->url(array('controller' => 'edifact', 'action' => 'index'), NULL, TRUE).">Datenaustausch</a>";
+         $userverwaltung         = "<a href=".$this->url(array('controller' => 'users', 'action' => 'index'), NULL, TRUE).">Benutzerverwaltung</a>";
+         $zählerverwaltung       = "<a href=".$this->url(array('controller' => 'meters', 'action' => 'index'), NULL, TRUE).">Geräteverwaltung</a>";
+         $setup                  = "<a href=".$this->url(array('controller' => 'setup', 'action' => 'index'), NULL, TRUE).">Erweiterte Einstellungen</a>";
+
+         $this->placeholder('Toplinks')->append($datenaustausch);
+         $this->placeholder('Toplinks')->append($userverwaltung);
+         $this->placeholder('Toplinks')->append($zählerverwaltung);
+         $this->placeholder('Toplinks')->append($setup);
+?>

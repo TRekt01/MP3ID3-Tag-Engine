@@ -1,0 +1,359 @@
+@charset "utf-8";
+a.logoutButton:link { text-decoration:none; font-weight:bold; font-size: 15px; color: #666}
+body {
+        margin: 0;
+        padding: 0;
+        color: #666;
+        font: 76% arial, "Trebuchet MS", tahoma, helvetica, sans-serif;
+}
+
+a {
+        color: #099;
+}
+
+a:hover {
+        color: #B7ED2D;
+}
+a img {
+border : 0 none;
+}
+code {
+         margin: 5px 0;
+         padding: 10px;
+         text-align: left;
+         display: block;
+         overflow: auto;
+         font: 500 1em/1.5em 'Lucida Console', 'courier new', monospace ;
+         /* white-space: pre; */
+         background: #F5F5F5;
+         border-left: 3px solid #D4D4D4;
+         color: #099;
+}
+#wrapper {
+        width: 1070px;
+        margin: 20px auto;
+}
+
+      #header {
+         height: 40px;
+      }
+
+         #nav {
+                 width: 815px;
+                 margin: 0 auto;
+                 overflow:hidden;
+                 text-align: center;
+         }
+                 #nav ul {
+                         list-style: none;
+                 }
+
+                 #nav li {
+                         float: left;
+                         margin: 0 2px 0 0;
+                 }
+
+                 #nav a {
+                      display: block;
+                      color: #545071;
+                      padding: 0 15px;
+                      text-decoration: none;
+                      border-bottom: 3px solid #545071;
+                 }
+
+                 #nav a:hover {
+                     color: #B7ED2D;
+                     border-bottom: 3px solid #2462bc;
+                 }
+
+         .userInfo{
+                 font-size: 10px;
+                 text-align: right;
+
+         }
+      #content {
+            margin: 0px 0;
+            padding: 0 0px;
+      }
+
+         #logo {
+                 height:110px;
+                 float: left;
+                 width: 812px;
+                 border-bottom: 1px dashed #545071;
+                 border-left: 1px dashed #545071;
+                 border-top: 1px dashed #545071;
+                 background: url("images/logo.png") no-repeat;
+         }
+
+                 .logoText {
+                         text-indent: 400px;
+                         text-decoration: underline;
+                         display:block;
+                         font: normal 2em/2em arial, sans-serif;
+                         color: #B7ED2D;
+                         padding-top: 30px;
+                 }
+
+
+         #r_column {
+                 width: 250px;
+                 float: right;
+                 border: 1px dashed #545071;
+                 padding: 2px 2px 2px 2px;
+                 margin-bottom: 5px;
+         }
+
+                 #r_column h2 {
+                         padding: 0;
+                         color: #fff;
+                         text-indent: 20px;
+                         background: #545071;
+                         list-style-type: none;
+                         font: 1.3em/1.5em arial, sans-serif;
+                 }
+
+                 .first {
+                         margin: 0 0;
+                 }
+
+                 .following {
+                         margin: 0.5em 0;
+                 }
+
+                 #r_column form {
+                         padding: 0;
+                         width: 240px;
+                         margin: 20px auto;
+                 }
+
+                 #r_column .input {
+                         width: 150px;
+                         height: 18px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+
+                 #r_column .checkbox {
+
+                 }
+
+                 #r_column ul {
+                         margin: 0;
+                         padding: 0;
+                         list-style: none;
+                 }
+
+                 #r_column li {
+                         padding: 5px;
+                         border-bottom: 1px dotted #bfc9ae;
+                 }
+
+                 #r_column a {
+                         line-height: 1.8em;
+                         text-decoration: none;
+                 }
+
+                 #r_column a:hover {
+                         text-decoration: underline;
+                 }
+
+                 #login_table{
+
+                 }
+                 #login_table td{
+                         width: 100%;
+                 }
+                 .errordiv{
+                         color: #CD0000;
+                 }
+                 .noerrordiv{
+                         color: #339933;
+                 }
+                 .resultdiv{
+                         border: 1px dashed silver;
+                         background: #F2F2F2;
+                 }
+                 .smallerrordiv{
+                         color: #CD0000;
+                         height: 1em;
+                         /*margin-top: -10px; MACHT IN IE8 8.0.6001.18702 probs bei den error messages unter den elementen */
+                         padding-bottom: 10px;
+                 }
+                 .lostpw {
+                         text-align: right;
+                         text-decoration: underline;
+                         font-size: 0.8em;
+                 }
+                 .rememberMe{
+                         text-align: right;
+                 }
+                 .submit{
+                         text-align: right;
+                 }
+
+         #main {
+                 width: 800px;
+                 float: left;
+         }
+                  .loggedInLinks{
+                         width: 100%;
+                  }
+                  .loggedInLinks a{
+                         text-decoration:none; font-weight:bold; font-size: 15px;
+                  }
+                  #main h1.title {
+                          padding: 0;
+                          color: #099;
+                          margin: 0.7em 0;
+                          border-bottom: 1px dotted #099;
+                          font: 1.8em/1.5em georgia, arial, sans-serif;
+                  }
+
+                  #main h2.title {
+                          padding: 0;
+                          color: #099;
+                          margin: 0.7em 0;
+                          border-bottom: 1px dotted #099;
+                          font: 1.8em/1.5em georgia, arial, sans-serif;
+                  }
+
+                 #main .input {
+                         height: 21px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+
+                 #main .inputMultiselect {
+                         height: 100px;
+                         width: 180px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+
+                 #main .inputarea {
+                         background: #eee;
+                         line-height: 18px;
+                         height: 180px;
+                         width: 400px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+
+
+                 .untertitel {
+                                 margin-top: -1em;
+                                 font-style:italic;
+                 }
+
+                 .helplink {
+                                 font-size: 10px;
+                 }
+                 .input_long {
+                         width: 200px;
+                         height: 18px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+                 .input_mediumlong {
+                         width: 300px;
+                         height: 18px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+                 .input_extralong {
+                         width: 400px;
+                         height: 18px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+                 .input_small {
+                         width: 60px;
+                         height: 18px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+                 .input_extrasmall {
+                         width: 20px;
+                         height: 18px;
+                         background: #eee;
+                         line-height: 18px;
+                         border: 1px solid #ccc;
+                         border-color: #099;
+                         border-right: 1px solid #099;
+                         border-bottom: 1px solid #099;
+                 }
+                 .input_checkbox{
+                         width: 20px;
+                         height: 18px;
+                 }
+                 .data_Table {
+                         width: 100%;
+                         font-color: red;
+                         background: #eee;
+                         align:left;
+                         text-align: left;
+                 }
+                 .data_Table th {
+                         color: #099;
+                 }
+                 .data_Table td {
+                         border: 1px dotted #099;
+                         font-size: 9px;
+                 }
+                 .data_Table .Ready, .Done ,.Finished{
+                         color: green;
+                 }
+                 .data_Table .Faulty{
+                         color: red;
+                 }
+                 .data_Table .Pending{
+                         color: #d5921d;
+                 }
+      #footer {
+         color: #000;
+         clear: both;
+         margin: 0 0;
+         text-align: center;
+         background: #545071;
+         font: 10px/4em verdana, sans-serif;
+      }
+
+         #footer a {
+                 color: #fff;
+         }
+
+
+.clear {
+        clear: both;
+}
