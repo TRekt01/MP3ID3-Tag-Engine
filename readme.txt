@@ -8,4 +8,11 @@ All you need to do is:
 4) Go to mp3writer/application/configs/application.ini and set you mp3 directory
 5) run
 
-No support or shit like that, im almost exclusively coding for my work so i dont have much time for support/maintanance. 
+No support or shit like that, im almost exclusively coding for my work so i dont have much time for support/maintanance.
+
+
+Big probs to zend framework, guys ur the best ur shit makes my life so much easier!
+
+Also probs to "GetID3", nice work and ty for sharing ur library!
+
+Greets
